@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useCallback, useContext, useState } from "react";
 import { UserContext } from "../App";
 import { Link } from "react-router-dom";
 
@@ -6,15 +6,18 @@ import { Link } from "react-router-dom";
 
 function UserList() {
   const users = useContext(UserContext);
+  
   const [hoveredUser, setHoveredUser] = useState(null);
 
-  const handleMouseEnter = (user) => {
-    setHoveredUser(user);
-  };
+  /*By wrapping the functions with useCallback, React will memoize them so that they are only recreated if their dependencies (in this case, setHoveredUser) have changed. This can improve performance by preventing unnecessary re-renders of child components that rely on these functions.*/
 
-  const handleMouseLeave = () => {
+  const handleMouseEnter = useCallback((user) => {
+    setHoveredUser(user);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
     setHoveredUser(null);
-  };
+  }, []);
 
   return (
     <div className=' mt-5 container border'>

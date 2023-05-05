@@ -14,6 +14,7 @@ The component renders an input and a textarea element that allow users to input 
 Overall, this component provides a comprehensive view of a user's details, posts, and albums, and allows users to perform basic CRUD operations on their posts. */
 
 function UserDetail() {
+  // get the id parameter from the URL using useParams
   const { id } = useParams();
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
@@ -30,6 +31,7 @@ function UserDetail() {
     const fetchUserDetail = async () => {
       console.log(selectedAlbumPhoto, "selected");
       try {
+        //Destructure the response data directly in the Promise.all callback function to avoid having to call ".data" on each response object:
         const [userResponse, postsResponse, albumsResponse] = await Promise.all(
           [
             axios.get(`https://jsonplaceholder.typicode.com/users/${id}`),
@@ -41,28 +43,31 @@ function UserDetail() {
             ),
           ]
         );
-
+        // set the response data to the state variables
         setUser(userResponse.data);
         setPosts(postsResponse.data);
         setAlbums(albumsResponse.data);
       } catch (error) {
+        // Use a catch block instead of a try-catch statement to handle errors:
         console.log(error);
       }
     };
-
+    // Call the function inside useEffect to fetch data based on the id parameter
     fetchUserDetail();
   }, [id, selectedAlbumPhoto]);
 
-  // it will navigate back to the userlist component
+  //  Navigate back to the user list component
   const handleGoBack = () => {
     navigate("/");
   };
 
+  // Handle editing of post by setting the editedPost state and editPostId state
   const handleEditPost = (postId) => {
     setEditPostId(postId);
     setEditedPost(posts.find((post) => post.id === postId));
   };
 
+  // Handle saving of edited post by updating the posts array state
   const handleSavePost = () => {
     const updatedPosts = posts.map((post) =>
       post.id === editPostId ? { ...post, ...editedPost } : post
@@ -71,6 +76,7 @@ function UserDetail() {
     setEditPostId(null);
   };
 
+  // Handle deleting of post by making a DELETE request to the API and updating the posts array state
   const handleDeletePost = (postId) => {
     axios
       .delete(`https://jsonplaceholder.typicode.com/posts/${postId}`)
@@ -83,6 +89,7 @@ function UserDetail() {
       });
   };
 
+  // Render the user detail component
   return (
     <div className='container' style={{ marginTop: "50px" }}>
       <nav>
@@ -101,10 +108,12 @@ function UserDetail() {
             <p className='mb-1'>Website : {user?.website}</p>
           </div>
         </div>
+
         <div
           className='col-md-9 p-4'
           style={{ overflowY: "scroll", height: "80vh" }}
         >
+          {/* whenever user want to add new post manually  */}
           <div>
             <h2 className='my-4'>Add New Post</h2>
             <div className='mb-3'>
@@ -151,6 +160,8 @@ function UserDetail() {
               Add Post
             </button>
           </div>
+
+          {/* shows all posts */}
 
           <div>
             <h2 className='my-4'>Posts</h2>
