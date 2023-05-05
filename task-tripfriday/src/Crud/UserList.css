@@ -1,0 +1,36 @@
+.user-details {
+    margin-right: 30px;
+}
+
+.posts-and-albums {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+
+li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    text-decoration: none;
+}
+
+li:hover {
+    background-color: #f0f0f0;
+}
+.scrollable {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 10px;
+}
+

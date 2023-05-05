@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #37306b;
+}
+
+.header {
+  color: #fff;
+}
+
+.emoji-container {
+  background-color: #4e31aa4d;
+  width: 500px;
+  padding: 15px 30px;
+  border-radius: 12px;
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.emoji {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-input {
+  width: 530px;
+  padding: 15px 15px;
+  border-radius: 12px;
+  margin-top: 15px;
+  background-color: #4e31aa4d;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+}
+
+.emoji-emty{
+  color: #fff
+}
