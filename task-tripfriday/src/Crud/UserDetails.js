@@ -146,15 +146,23 @@ function UserDetail() {
             <button
               className='btn btn-primary'
               onClick={() => {
-                axios
-                  .post("https://jsonplaceholder.typicode.com/posts", newPost)
-                  .then((response) => {
-                    setPosts([...posts, response.data]);
-                    setNewPost({ title: "", body: "" });
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
+                // Check if both title and body are not empty
+                if (newPost.title.trim() !== "" && newPost.body.trim() !== "") {
+                  // Send a POST request to the API endpoint to create a new post with the data in newPost
+                  axios
+                    .post("https://jsonplaceholder.typicode.com/posts", newPost)
+                    .then((response) => {
+                      // If the request is successful, update the posts state with the new post data
+                      setPosts([...posts, response.data]);
+                      // Reset the newPost state to clear the input fields
+                      setNewPost({ title: "", body: "" });
+                    })
+                    .catch((error) => {
+                      // Reset the newPost state to clear the input fields
+
+                      console.log(error);
+                    });
+                }
               }}
             >
               Add Post
