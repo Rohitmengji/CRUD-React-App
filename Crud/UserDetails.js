@@ -29,7 +29,7 @@ function UserDetail() {
 
   useEffect(() => {
     const fetchUserDetail = async () => {
-      console.log(selectedAlbumPhoto, "selected");
+      // console.log(selectedAlbumPhoto, "selected");
       try {
         //Destructure the response data directly in the Promise.all callback function to avoid having to call ".data" on each response object:
         const [userResponse, postsResponse, albumsResponse] = await Promise.all(

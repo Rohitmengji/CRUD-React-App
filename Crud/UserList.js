@@ -1,5 +1,5 @@
 import { useCallback, useContext, useState } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../task-tripfriday/src/App";
 import { Link } from "react-router-dom";
 
 /* This code exports a UserList component that uses useContext hook to access the users array from UserContext provided by the App component. It then maps over the users array and renders a Link for each user that directs to the UserDetails component with the user's id as a parameter. Additionally, it renders a tooltip popup for each user on hover that shows the user's username and email.*/
